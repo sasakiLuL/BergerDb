@@ -1,0 +1,38 @@
+import RequestFiltering from "../Types/RequestFiltering";
+
+export default class CustomersRequestFilters {
+  static filtering: RequestFiltering[] = [
+    new RequestFiltering("id"),
+    new RequestFiltering("prefix"),
+    new RequestFiltering("isRecivedInvoice"),
+    new RequestFiltering("isRecivedDunning"),
+    new RequestFiltering("isDebtor"),
+    new RequestFiltering("firstName"),
+    new RequestFiltering("lastName"),
+    new RequestFiltering("email"),
+    new RequestFiltering("personalId"),
+    new RequestFiltering("sex"),
+    new RequestFiltering("registrationDateGte"),
+    new RequestFiltering("registrationDateLte"),
+    new RequestFiltering("street"),
+    new RequestFiltering("zipCode"),
+    new RequestFiltering("city"),
+    new RequestFiltering("paymentType"),
+    new RequestFiltering("memberType"),
+    new RequestFiltering("institution"),
+    new RequestFiltering("entryType"),
+    new RequestFiltering("amount"),
+    new RequestFiltering("currentInvoiceSendedOnGte"),
+    new RequestFiltering("currentInvoiceSendedOnLte"),
+    new RequestFiltering("lastInvoiceSendedOnGte"),
+    new RequestFiltering("lastInvoiceSendedOnLte"),
+    new RequestFiltering("currentCreditReceivedOnGte"),
+    new RequestFiltering("currentCreditReceivedOnLte"),
+    new RequestFiltering("lastCreditReceivedOnGte"),
+    new RequestFiltering("lastCreditReceivedOnLte"),
+    new RequestFiltering("dunningSendedOnGte"),
+    new RequestFiltering("dunningSendedOnLte"),
+    new RequestFiltering("terminatedOnGte"),
+    new RequestFiltering("terminatedOnLte"),
+  ];
+}

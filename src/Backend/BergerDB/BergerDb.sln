@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BergerDb.Domain", "BergerDb.Domain\BergerDb.Domain.csproj", "{50A8DC56-EF31-4523-B770-5311A577588A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BergerDb.Persistence", "BergerDb.Persistence\BergerDb.Persistence.csproj", "{C2EC6FE0-168B-4199-8498-FEF2A577B851}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BergerDb.Application", "BergerDb.Application\BergerDb.Application.csproj", "{60BA053B-9F6C-4C7B-9425-FA22341F885A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BergerDb.Contracts", "BergerDb.Contracts\BergerDb.Contracts.csproj", "{02C8ABEC-4D23-4DB7-AC1A-A7413AAC7165}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BergerDb.Infrastructure", "BergerDb.Infrastructure\BergerDb.Infrastructure.csproj", "{C3E76720-1CCB-4A0C-BA3E-5E43C44FB603}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BergerDb.Api", "BergerDb.Api\BergerDb.Api.csproj", "{2E626DD4-E567-4BAA-A942-40AD484F8F8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50A8DC56-EF31-4523-B770-5311A577588A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50A8DC56-EF31-4523-B770-5311A577588A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50A8DC56-EF31-4523-B770-5311A577588A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50A8DC56-EF31-4523-B770-5311A577588A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2EC6FE0-168B-4199-8498-FEF2A577B851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2EC6FE0-168B-4199-8498-FEF2A577B851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2EC6FE0-168B-4199-8498-FEF2A577B851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2EC6FE0-168B-4199-8498-FEF2A577B851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BA053B-9F6C-4C7B-9425-FA22341F885A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BA053B-9F6C-4C7B-9425-FA22341F885A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BA053B-9F6C-4C7B-9425-FA22341F885A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BA053B-9F6C-4C7B-9425-FA22341F885A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C8ABEC-4D23-4DB7-AC1A-A7413AAC7165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C8ABEC-4D23-4DB7-AC1A-A7413AAC7165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C8ABEC-4D23-4DB7-AC1A-A7413AAC7165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C8ABEC-4D23-4DB7-AC1A-A7413AAC7165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3E76720-1CCB-4A0C-BA3E-5E43C44FB603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E76720-1CCB-4A0C-BA3E-5E43C44FB603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E76720-1CCB-4A0C-BA3E-5E43C44FB603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E76720-1CCB-4A0C-BA3E-5E43C44FB603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E626DD4-E567-4BAA-A942-40AD484F8F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E626DD4-E567-4BAA-A942-40AD484F8F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E626DD4-E567-4BAA-A942-40AD484F8F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E626DD4-E567-4BAA-A942-40AD484F8F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3990CD7F-08B1-474B-AB88-22791CC9C9C4}
+	EndGlobalSection
+EndGlobal
