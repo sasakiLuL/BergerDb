@@ -215,10 +215,14 @@ export default function InvoiceDocument({
                       Abrechnungszeitraum:
                     </Text>
                     <Text style={{ minWidth: "50%" }}>
-                      {`${dayjs(customer.registrationDate).format(
-                        dateFormat
-                      )} bis ${dayjs(customer.registrationDate)
+                      {`${dayjs(customer.registrationDate)
+                        .year(new Date().getFullYear())
+                        .format(dateFormat)} bis ${dayjs(
+                        customer.registrationDate
+                      )
+                        .year(new Date().getFullYear())
                         .add(1, "y")
+                        .subtract(1, "d")
                         .format(dateFormat)}`}
                     </Text>
                   </View>
