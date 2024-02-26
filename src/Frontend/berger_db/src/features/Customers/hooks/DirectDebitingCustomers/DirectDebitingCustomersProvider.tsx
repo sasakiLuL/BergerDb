@@ -64,6 +64,8 @@ export default function DirectDebitingCustomersProvider({
       filteringString += filter.toRequestString();
     }
 
+    console.log(filteringString);
+
     setIsLoading(true);
     return axios
       .get(

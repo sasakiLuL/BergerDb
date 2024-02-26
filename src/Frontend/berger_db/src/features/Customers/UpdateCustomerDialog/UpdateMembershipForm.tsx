@@ -258,7 +258,7 @@ export default function UpdateMembershipForm({
         <Grid item xs={6}>
           <DatePicker
             label="Aktuelle Rechnung"
-            maxDate={
+            minDate={
               formik.values.lastInvoiceSendedOn !== null
                 ? dayjs(formik.values.lastInvoiceSendedOn)
                 : null
@@ -293,7 +293,7 @@ export default function UpdateMembershipForm({
         <Grid item xs={6}>
           <DatePicker
             label="Letzte Rechnung"
-            minDate={
+            maxDate={
               formik.values.currentInvoiceSendedOn !== null
                 ? dayjs(formik.values.currentInvoiceSendedOn)
                 : null
@@ -333,7 +333,7 @@ export default function UpdateMembershipForm({
         <Grid item xs={6}>
           <DatePicker
             label="Aktuelle Gutschrift"
-            maxDate={
+            minDate={
               formik.values.lastCreditReceivedOn !== undefined
                 ? dayjs(formik.values.lastCreditReceivedOn)
                 : undefined
@@ -368,7 +368,7 @@ export default function UpdateMembershipForm({
         <Grid item xs={6}>
           <DatePicker
             label="Letzte Gutschrift"
-            minDate={
+            maxDate={
               formik.values.currentCreditReceivedOn !== null
                 ? dayjs(formik.values.currentCreditReceivedOn)
                 : null

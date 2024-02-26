@@ -9,6 +9,7 @@ import CustomersTableSort from "../CustomersTableFilters/CustomersTableSort";
 import CustomersTableStringFilter from "../CustomersTableFilters/CustomersTableStringFilter";
 import RequestFiltering from "../../../utils/Types/RequestFiltering";
 import RequestSorting from "../../../utils/Types/RequestSorting";
+import CustomersTableAdvancedDateFilter from "../CustomersTableFilters/CustomersTableAdvancedDateFilter";
 
 export default class CustomersTableColumns {
   public columns: EnhancedTableColumn<CustomerResponse>[];
@@ -188,11 +189,11 @@ export default class CustomersTableColumns {
           <Typography fontWeight={700}>Registriert am</Typography>
         ),
         renderFilter: () => (
-          <CustomersTableDateFilter
+          <CustomersTableAdvancedDateFilter
             filtering={filtering}
             setFiltering={setFiltering}
-            startDateField="registrationDateGte"
-            endDateField="registrationDateLte"
+            startMonth="registrationDateGte"
+            endMonth="registrationDateLte"
           />
         ),
         renderSorting: () => (

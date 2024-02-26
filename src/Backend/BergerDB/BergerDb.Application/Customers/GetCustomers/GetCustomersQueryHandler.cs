@@ -102,13 +102,13 @@ public class GetCustomersQueryHandler : IQueryHandler<GetCustomersQuery, PagedLi
         if (request.Filters.RegistrationDateGte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.RegistrationDate >= request.Filters.RegistrationDateGte);
+                c.RegistrationDate.ToLocalTime().Month >= request.Filters.RegistrationDateGte.Value.Month);
         }
 
         if (request.Filters.RegistrationDateLte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.RegistrationDate <= request.Filters.RegistrationDateLte);
+                c.RegistrationDate.ToLocalTime().Month <= request.Filters.RegistrationDateLte.Value.Month);
         }
 
         if (!string.IsNullOrEmpty(request.Filters.Street))
@@ -162,73 +162,73 @@ public class GetCustomersQueryHandler : IQueryHandler<GetCustomersQuery, PagedLi
         if (request.Filters.CurrentInvoiceSendedOnGte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.InvoiceSendedOn.Current >= request.Filters.CurrentInvoiceSendedOnGte);
+                c.Membership!.InvoiceSendedOn.Current >= request.Filters.CurrentInvoiceSendedOnGte.Value.ToUniversalTime());
         }
 
         if (request.Filters.CurrentInvoiceSendedOnLte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.InvoiceSendedOn.Current <= request.Filters.CurrentInvoiceSendedOnLte);
+                c.Membership!.InvoiceSendedOn.Current <= request.Filters.CurrentInvoiceSendedOnLte.Value.ToUniversalTime());
         }
 
         if (request.Filters.LastInvoiceSendedOnGte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.InvoiceSendedOn.Last >= request.Filters.LastInvoiceSendedOnGte);
+                c.Membership!.InvoiceSendedOn.Last >= request.Filters.LastInvoiceSendedOnGte.Value.ToUniversalTime());
         }
 
         if (request.Filters.LastInvoiceSendedOnLte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.InvoiceSendedOn.Last <= request.Filters.LastInvoiceSendedOnLte);
+                c.Membership!.InvoiceSendedOn.Last <= request.Filters.LastInvoiceSendedOnLte.Value.ToUniversalTime());
         }
 
         if (request.Filters.CurrentCreditReceivedOnGte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.CreditReceivedOn.Current >= request.Filters.CurrentCreditReceivedOnGte);
+                c.Membership!.CreditReceivedOn.Current >= request.Filters.CurrentCreditReceivedOnGte.Value.ToUniversalTime());
         }
 
         if (request.Filters.CurrentCreditReceivedOnLte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.CreditReceivedOn.Current <= request.Filters.CurrentCreditReceivedOnLte);
+                c.Membership!.CreditReceivedOn.Current <= request.Filters.CurrentCreditReceivedOnLte.Value.ToUniversalTime());
         }
 
         if (request.Filters.LastCreditReceivedOnGte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.CreditReceivedOn.Last >= request.Filters.LastCreditReceivedOnGte);
+                c.Membership!.CreditReceivedOn.Last >= request.Filters.LastCreditReceivedOnGte.Value.ToUniversalTime());
         }
 
         if (request.Filters.LastCreditReceivedOnLte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.CreditReceivedOn.Last <= request.Filters.LastCreditReceivedOnLte);
+                c.Membership!.CreditReceivedOn.Last <= request.Filters.LastCreditReceivedOnLte.Value.ToUniversalTime());
         }
 
         if (request.Filters.TerminatedOnGte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.TerminatedOn >= request.Filters.TerminatedOnGte);
+                c.Membership!.TerminatedOn >= request.Filters.TerminatedOnGte.Value.ToUniversalTime());
         }
 
         if (request.Filters.TerminatedOnLte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.TerminatedOn <= request.Filters.TerminatedOnLte);
+                c.Membership!.TerminatedOn <= request.Filters.TerminatedOnLte.Value.ToUniversalTime());
         }
 
         if (request.Filters.DunningSendedOnGte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.DunningSendedOn >= request.Filters.DunningSendedOnGte);
+                c.Membership!.DunningSendedOn >= request.Filters.DunningSendedOnGte.Value.ToUniversalTime());
         }
 
         if (request.Filters.DunningSendedOnLte is not null)
         {
             customerQuery = customerQuery.Where(c =>
-                c.Membership!.DunningSendedOn <= request.Filters.DunningSendedOnLte);
+                c.Membership!.DunningSendedOn <= request.Filters.DunningSendedOnLte.Value.ToUniversalTime());
         }
 
         var sortColumn = GetSortColumn(request);
@@ -268,7 +268,7 @@ public class GetCustomersQueryHandler : IQueryHandler<GetCustomersQuery, PagedLi
             "notation" => customer => customer.Notation,
             "personalid" => customer => customer.PersonalId,
             "sex" => customer => customer.Sex,
-            "registrationdate" => customer => customer.RegistrationDate,
+            "registrationdate" => customer => customer.RegistrationDate.Month,
             "street" => customer => customer.Address!.Street.Value,
             "zipcode" => customer => customer.Address!.ZipCode.Value,
             "city" => customer => customer.Address!.City.Value,

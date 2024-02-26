@@ -36,16 +36,16 @@ export default function Home({ loginPath, configurationPath }: HomeProps) {
 
       <Container maxWidth="xl" sx={{ p: theme.spacing(2) }}>
         <Stack spacing={2}>
-          <BillingCustomersProvider>
-            <SelectedBillingCustomersProvider>
-              <BillingCustomersTable />
-            </SelectedBillingCustomersProvider>
-          </BillingCustomersProvider>
           <DirectDebitingCustomersProvider>
             <SelectedDirectDebitingCustomersProvider>
               <DirectDebitingCustomersTable />
             </SelectedDirectDebitingCustomersProvider>
           </DirectDebitingCustomersProvider>
+          <BillingCustomersProvider>
+            <SelectedBillingCustomersProvider>
+              <BillingCustomersTable />
+            </SelectedBillingCustomersProvider>
+          </BillingCustomersProvider>
         </Stack>
       </Container>
     </LocalizationProvider>
