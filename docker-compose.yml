@@ -1,0 +1,6 @@
+services:
+  bergerdb.api:
+    image: ${DOCKER_REGISTRY-}bergerdbapi
+    build:
+      context: .
+      dockerfile: src/BergerDb.Api/Dockerfile
