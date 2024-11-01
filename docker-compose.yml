@@ -4,3 +4,17 @@ services:
     build:
       context: .
       dockerfile: src/BergerDb.Api/Dockerfile
+    ports:
+      - 5000:8080
+      - 5001:8081
+  bergerdb.database:
+    image: postgres:latest
+    container_name: bergerdb.database
+    volumes:
+      - ./.containers/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: bergerdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
