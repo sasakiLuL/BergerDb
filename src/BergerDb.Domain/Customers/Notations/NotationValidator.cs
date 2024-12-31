@@ -1,4 +1,4 @@
-﻿using BergerDb.Domain.Primitives.Results;
+﻿using BergerDb.Shared.Results;
 using FluentValidation;
 
 namespace BergerDb.Domain.Customers.Notations;

@@ -1,4 +1,4 @@
-﻿using BergerDb.Domain.Primitives.Errors;
+﻿using BergerDb.Shared.Errors;
 
 namespace BergerDb.Domain.Customers.Notations;
 

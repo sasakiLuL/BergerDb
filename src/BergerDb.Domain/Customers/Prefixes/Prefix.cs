@@ -1,5 +1,5 @@
-﻿using BergerDb.Domain.Primitives.Entities;
-using BergerDb.Domain.Primitives.Results;
+﻿using BergerDb.Shared.Entities;
+using BergerDb.Shared.Results;
 using System.Text.RegularExpressions;
 
 namespace BergerDb.Domain.Customers.Prefixes;

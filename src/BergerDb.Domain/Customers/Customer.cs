@@ -1,87 +1,92 @@
-﻿using BergerDb.Domain.Customers.Addresses;
-using BergerDb.Domain.Customers.EmailAddresses;
-using BergerDb.Domain.Customers.FirstNames;
-using BergerDb.Domain.Customers.Institutions;
-using BergerDb.Domain.Customers.LastNames;
-using BergerDb.Domain.Customers.Notations;
+﻿using BergerDb.Domain.Customers.Notations;
 using BergerDb.Domain.Customers.Prefixes;
 using BergerDb.Domain.Customers.ZipCodes;
 using BergerDb.Domain.PaymentProcesses;
-using BergerDb.Domain.Primitives.Entities;
+using BergerDb.Domain.ValueObjects.Addresses;
+using BergerDb.Domain.ValueObjects.EmailAddresses;
+using BergerDb.Domain.ValueObjects.Names;
+using BergerDb.Shared.Entities;
 
 namespace BergerDb.Domain.Customers;
 
-public abstract class Customer : Entity
+public class Customer : Entity<CustomerId>
 {
     private readonly List<PaymentProcess> _paymentProcesses = [];
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private Customer() : base(new CustomerId(Guid.NewGuid())) { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+
     public Customer(
-        CustomerId id,
-        Address address,
-        EmailAddress email,
-        FirstName firstName,
-        LastName lastName,
-        Institution institution,
-        Notation notation,
-        Prefix prefix,
-        ZipCode zipCode,
-        EntryType entryType,
-        MemberType memberType,
-        PaymentType paymentType,
-        Sex sex,
-        decimal subscriptionCost,
-        DateTime registeredOnUtc) : base(id)
+        CustomerId id, 
+        long personalId, 
+        Prefix prefix, 
+        Name firstName, 
+        Name lastName, 
+        Sex sex, 
+        EmailAddress emailAddress, 
+        DateTime registeredOnUtc, 
+        Notation notation, 
+        Address street, 
+        Address city, 
+        ZipCode zipCode, 
+        PaymentType paymentType, 
+        MemberType memberType, 
+        EntryType entryType, 
+        decimal subscriptionCost, 
+        Name institution) : base(id)
     {
-        Address = address;
-        Email = email;
+        PersonalId = personalId;
+        Prefix = prefix;
         FirstName = firstName;
         LastName = lastName;
-        Institution = institution;
-        Notation = notation;
-        Prefix = prefix;
-        ZipCode = zipCode;
-        EntryType = entryType;
-        MemberType = memberType;
-        PaymentType = paymentType;
         Sex = sex;
-        SubscriptionCost = subscriptionCost;
+        EmailAddress = emailAddress;
         RegisteredOnUtc = registeredOnUtc;
+        Notation = notation;
+        Street = street;
+        City = city;
+        ZipCode = zipCode;
+        PaymentType = paymentType;
+        MemberType = memberType;
+        EntryType = entryType;
+        SubscriptionCost = subscriptionCost;
+        Institution = institution;
     }
 
-    public Address Address { get; set; }
-
-    public EmailAddress Email { get; set; }
-
-    public FirstName FirstName { get; set; }
-
-    public LastName LastName { get; set; }
-
-    public Institution Institution { get; set; }
-
-    public Notation Notation { get; set; }
+    public long PersonalId { get; set; }
 
     public Prefix Prefix { get; set; }
 
-    public ZipCode ZipCode { get; set; }
+    public Name FirstName { get; set; }
 
-    public EntryType EntryType { get; set; }
+    public Name LastName { get; set; }
 
-    public MemberType MemberType { get; set; }
+    public Sex Sex { get; set; }
 
-    public decimal SubscriptionCost { get; set; }
+    public EmailAddress EmailAddress { get; set; }
 
     public DateTime RegisteredOnUtc { get; set; }
 
     public DateTime? TerminatedOnUtc { get; set; }
 
-    public Sex Sex { get; set; }
+    public Notation Notation { get; set; }
 
-    public PaymentType PaymentType { get; private set; }
+    public Address Street { get; set; }
 
-    public bool IsActive()
-    {
-        return TerminatedOnUtc.HasValue;
-    }
+    public Address City { get; set; }
+
+    public ZipCode ZipCode { get; set; }
+    
+    public PaymentType PaymentType { get; set; }
+
+    public MemberType MemberType { get; set; }
+
+    public EntryType EntryType { get; set; }
+
+    public decimal SubscriptionCost { get; set; }
+
+    public Name Institution { get; set; }
 
     public PaymentProcess? CurrentPaymentProcess => _paymentProcesses.LastOrDefault();
 

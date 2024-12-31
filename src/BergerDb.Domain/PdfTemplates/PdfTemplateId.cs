@@ -1,4 +1,4 @@
-﻿using BergerDb.Domain.Primitives.Entities;
+﻿using BergerDb.Shared.Entities;
 
 namespace BergerDb.Domain.PdfTemplates;
 

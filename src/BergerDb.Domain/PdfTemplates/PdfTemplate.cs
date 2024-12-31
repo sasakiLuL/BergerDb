@@ -1,16 +1,19 @@
-﻿using BergerDb.Domain.Primitives.Entities;
-using System.Drawing;
+﻿using BergerDb.Shared.Entities;
 
 namespace BergerDb.Domain.PdfTemplates;
 
-public class PdfTemplate : Entity
+public class PdfTemplate : Entity<PdfTemplateId>
 {
+#pragma warning disable CS8618
+    private PdfTemplate() : base(new PdfTemplateId(Guid.NewGuid())) { }
+#pragma warning restore CS8618
+
     public PdfTemplate(
         PdfTemplateId id, 
-        Color color) : base(id)
+        string color) : base(id)
     {
         Color = color;
     }
 
-    public Color Color { get; set; }
+    public string Color { get; set; }
 }

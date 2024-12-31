@@ -1,6 +1,6 @@
 ﻿using BergerDb.Domain.Customers;
 using BergerDb.Domain.Emails;
-using BergerDb.Domain.Primitives.Time;
+using BergerDb.Shared.Time;
 
 namespace BergerDb.Domain.PaymentProcesses;
 
@@ -8,16 +8,20 @@ public class Billing : PaymentProcess
 {
     public const int TimeToPayInDays = 14;
 
+    private Billing() : base() { }
+
     public Billing(
-        PaymentProcessId id) : base(
+        PaymentProcessId id,
+        CustomerId customerId) : base(
             id, 
-            PaymentType.Billing)
+            PaymentType.Billing,
+            customerId)
     {
     }
 
     public override bool IsExpired()
     {
-        if (Payment is not null)
+        if (PaymentId is not null)
         {
             return false;
         }

@@ -4,10 +4,14 @@ namespace BergerDb.Domain.PaymentProcesses;
 
 public class Debiting : PaymentProcess
 {
+    private Debiting() : base() { }
+
     public Debiting(
-        PaymentProcessId id) : base(
+        PaymentProcessId id,
+        CustomerId customerId) : base(
             id, 
-            PaymentType.Debiting)
+            PaymentType.Debiting,
+            customerId)
     {
     }
 
