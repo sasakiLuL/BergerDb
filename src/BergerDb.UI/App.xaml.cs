@@ -1,15 +1,20 @@
-﻿namespace BergerDb.UI
-{
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
-        }
+﻿using BergerDb.UI.Pages.MainNavigation;
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
-        }
+namespace BergerDb.UI;
+
+public partial class App : Microsoft.Maui.Controls.Application
+{
+    private readonly MainNavigationShell _mainPage;
+
+    public App(MainNavigationShell mainPage)
+    {
+        InitializeComponent();
+
+        _mainPage = mainPage;
+    }
+
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(_mainPage);
     }
 }
