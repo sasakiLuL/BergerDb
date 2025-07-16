@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:colors="clr-namespace:Microsoft.Maui.Controls.Generated"
+             x:Class="BergerDb.Controls.TableView.Table"
+             x:Name="TableView">
+
+    <ContentView.Resources>
+        <Style 
+            TargetType="Border">
+            <Setter 
+                Property="Stroke" 
+                Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
+            <Setter 
+                Property="StrokeShape" 
+                Value="RoundRectangle 4,4,0,0" />
+            <Setter 
+                Property="StrokeThickness" 
+                Value="0.5"/>
+        </Style>
+    </ContentView.Resources>
+
+    <Grid
+        HeightRequest="500">
+
+        <Grid.RowDefinitions>
+            <RowDefinition 
+                Height="Auto" />
+            <RowDefinition 
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <ScrollView 
+            Orientation="Horizontal" 
+            Grid.Row="0"
+            HorizontalScrollBarVisibility="Default"
+            VerticalScrollBarVisibility="Never">
+
+            <VerticalStackLayout
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray950}}">
+                <Grid 
+                    x:Name="ColumnsView"
+                    HorizontalOptions="FillAndExpand"/>
+                <BoxView 
+                    HeightRequest="0.5"></BoxView>
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <ScrollView 
+            Orientation="Vertical" 
+            Grid.Row="1" 
+            VerticalScrollBarVisibility="Always"
+            HorizontalScrollBarVisibility="Never">
+
+            <CollectionView 
+                x:Name="TableRowsView" 
+                ItemsSource="{Binding RowsViews, Source={x:Reference TableView}}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <ContentView 
+                                Content="{Binding Value}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup 
+                                            x:Name="CommonStates">
+                                            <VisualState 
+                                                x:Name="Normal" />
+                                            <VisualState 
+                                                x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter 
+                                                        Property="BackgroundColor" 
+                                                        Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}">
+                                                    </Setter>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState 
+                                                x:Name="Disabled" />
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                            </ContentView>
+                            <BoxView 
+                                HeightRequest="0.5"></BoxView>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </ScrollView>
+    </Grid>
+</ContentView>
