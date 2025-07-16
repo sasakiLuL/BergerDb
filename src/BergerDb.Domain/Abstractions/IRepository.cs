@@ -2,7 +2,7 @@
 
 namespace BergerDb.Domain.Abstractions;
 
-public interface IRepository<TEntity, TEntityId> where TEntity : Entity<TEntityId> where TEntityId : EntityId
+public interface IRepository<TEntity> where TEntity : Entity
 {
     void Add(TEntity entity);
 
@@ -10,5 +10,5 @@ public interface IRepository<TEntity, TEntityId> where TEntity : Entity<TEntityI
 
     Task<IEnumerable<TEntity>> GetAsync(CancellationToken token = default);
 
-    Task<TEntity?> GetByIdAsync(TEntityId id, CancellationToken token = default);
+    Task<TEntity?> GetByIdAsync(Guid id, CancellationToken token = default);
 }
