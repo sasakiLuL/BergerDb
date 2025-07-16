@@ -1,24 +1,24 @@
-﻿using BergerDb.Domain.Customers.Notations;
+﻿using BergerDb.Domain.Customers.Addresses;
+using BergerDb.Domain.Customers.Names;
+using BergerDb.Domain.Customers.Notations;
 using BergerDb.Domain.Customers.Prefixes;
 using BergerDb.Domain.Customers.ZipCodes;
+using BergerDb.Domain.Emails.EmailAddresses;
 using BergerDb.Domain.PaymentProcesses;
-using BergerDb.Domain.ValueObjects.Addresses;
-using BergerDb.Domain.ValueObjects.EmailAddresses;
-using BergerDb.Domain.ValueObjects.Names;
 using BergerDb.Shared.Entities;
 
 namespace BergerDb.Domain.Customers;
 
-public class Customer : Entity<CustomerId>
+public class Customer : Entity
 {
     private readonly List<PaymentProcess> _paymentProcesses = [];
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    private Customer() : base(new CustomerId(Guid.NewGuid())) { }
+    private Customer() : base(Guid.NewGuid()) { }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     public Customer(
-        CustomerId id, 
+        Guid id, 
         long personalId, 
         Prefix prefix, 
         Name firstName, 
@@ -52,6 +52,17 @@ public class Customer : Entity<CustomerId>
         EntryType = entryType;
         SubscriptionCost = subscriptionCost;
         Institution = institution;
+
+        switch (PaymentType)
+        {
+            case PaymentType.Billing:
+                _paymentProcesses.Add(new Billing(Guid.NewGuid(), id));
+                break;
+
+            case PaymentType.Debiting:
+                _paymentProcesses.Add(new Debiting(Guid.NewGuid(), id));
+                break;
+        }
     }
 
     public long PersonalId { get; set; }

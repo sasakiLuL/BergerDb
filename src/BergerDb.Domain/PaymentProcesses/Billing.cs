@@ -11,8 +11,8 @@ public class Billing : PaymentProcess
     private Billing() : base() { }
 
     public Billing(
-        PaymentProcessId id,
-        CustomerId customerId) : base(
+        Guid id,
+        Guid customerId) : base(
             id, 
             PaymentType.Billing,
             customerId)

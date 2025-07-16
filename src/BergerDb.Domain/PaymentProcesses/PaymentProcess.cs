@@ -6,18 +6,18 @@ using BergerDb.Shared.Results;
 
 namespace BergerDb.Domain.PaymentProcesses;
 
-public abstract class PaymentProcess : Entity<PaymentProcessId>
+public abstract class PaymentProcess : Entity
 {
     protected readonly List<Email> _emails = [];
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    protected PaymentProcess() : base(new PaymentProcessId(Guid.NewGuid())) {}
+    protected PaymentProcess() : base(Guid.NewGuid()) {}
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     protected PaymentProcess(
-        PaymentProcessId id,
+        Guid id,
         PaymentType paymentType,
-        CustomerId customerId) : base(id)
+        Guid customerId) : base(id)
     {
         PaymentType = paymentType;
         CustomerId = customerId;
@@ -25,9 +25,9 @@ public abstract class PaymentProcess : Entity<PaymentProcessId>
 
     public PaymentType PaymentType { get; init; }
 
-    public PaymentId? PaymentId { get; protected set; }
+    public Guid? PaymentId { get; protected set; }
 
-    public CustomerId CustomerId { get; protected set; }
+    public Guid CustomerId { get; protected set; }
 
     public virtual Result SendEmail(Email email)
     {
@@ -36,7 +36,7 @@ public abstract class PaymentProcess : Entity<PaymentProcessId>
         return Result.Success();
     }
 
-    public virtual Result Finish(PaymentId paymentId)
+    public virtual Result Finish(Guid paymentId)
     {
         PaymentId = paymentId;
 

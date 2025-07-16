@@ -1,19 +1,19 @@
-﻿using BergerDb.Domain.Emails.PdfMetadatas;
+﻿using BergerDb.Domain.Emails.EmailAddresses;
+using BergerDb.Domain.Emails.PdfMetadatas;
 using BergerDb.Domain.PaymentProcesses;
-using BergerDb.Domain.ValueObjects.EmailAddresses;
 using BergerDb.Shared.Entities;
 
 namespace BergerDb.Domain.Emails;
 
-public class Email : Entity<EmailId>
+public class Email : Entity
 {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    private Email() : base(new EmailId(Guid.NewGuid())) { }
+    private Email() : base(Guid.NewGuid()) { }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     public Email(
-        EmailId id,
-        PaymentProcessId paymentProcessId,
+        Guid id,
+        Guid paymentProcessId,
         EmailType emailType,
         DateTime sentOnUtc,
         string subject,
@@ -32,7 +32,7 @@ public class Email : Entity<EmailId>
         PdfMetadata = pdfMetadata;
     }
 
-    public PaymentProcessId PaymentProcessId { get; set; }
+    public Guid PaymentProcessId { get; set; }
 
     public EmailType EmailType { get; set; }
 

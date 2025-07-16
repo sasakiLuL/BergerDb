@@ -2,7 +2,7 @@
 
 namespace BergerDb.Domain.Customers;
 
-public interface ICustomerRepository : IRepository<Customer, CustomerId>
+public interface ICustomerRepository : IRepository<Customer>
 {
     Task<IEnumerable<Customer>> GetQueryableAsync(Func<IQueryable<Customer>, IQueryable<Customer>>? filters = default, CancellationToken token = default);
 

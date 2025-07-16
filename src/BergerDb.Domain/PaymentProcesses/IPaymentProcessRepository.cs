@@ -2,6 +2,6 @@
 
 namespace BergerDb.Domain.PaymentProcesses;
 
-public interface IPaymentProcessRepository : IRepository<PaymentProcess, PaymentProcessId>
+public interface IPaymentProcessRepository : IRepository<PaymentProcess>
 {
 }

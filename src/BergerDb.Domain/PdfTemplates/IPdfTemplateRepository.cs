@@ -2,6 +2,6 @@
 
 namespace BergerDb.Domain.PdfTemplates;
 
-public interface IPdfTemplateRepository : IRepository<PdfTemplate, PdfTemplateId>
+public interface IPdfTemplateRepository : IRepository<PdfTemplate>
 {
 }

@@ -3,17 +3,17 @@ using BergerDb.Shared.Entities;
 
 namespace BergerDb.Domain.Payments;
 
-public class Payment : Entity<PaymentId>
+public class Payment : Entity
 {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    private Payment() : base(new PaymentId(Guid.NewGuid())) { }
+    private Payment() : base(Guid.NewGuid()) { }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     public Payment(
-        PaymentId id,
+        Guid id,
         decimal value,
         DateTime paidOnUtc,
-        PaymentProcessId paymentProcessId) : base(id)
+        Guid paymentProcessId) : base(id)
     {
         Value = value;
         PaidOnUtc = paidOnUtc;
@@ -24,5 +24,5 @@ public class Payment : Entity<PaymentId>
 
     public DateTime PaidOnUtc { get; set; }
 
-    public PaymentProcessId PaymentProcessId { get; set; }
+    public Guid PaymentProcessId { get; set; }
 }

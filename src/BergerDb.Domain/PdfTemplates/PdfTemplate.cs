@@ -2,14 +2,14 @@
 
 namespace BergerDb.Domain.PdfTemplates;
 
-public class PdfTemplate : Entity<PdfTemplateId>
+public class PdfTemplate : Entity
 {
 #pragma warning disable CS8618
-    private PdfTemplate() : base(new PdfTemplateId(Guid.NewGuid())) { }
+    private PdfTemplate() : base(Guid.NewGuid()) { }
 #pragma warning restore CS8618
 
     public PdfTemplate(
-        PdfTemplateId id, 
+        Guid id, 
         string color) : base(id)
     {
         Color = color;

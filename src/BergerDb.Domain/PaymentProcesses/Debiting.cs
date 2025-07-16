@@ -7,8 +7,8 @@ public class Debiting : PaymentProcess
     private Debiting() : base() { }
 
     public Debiting(
-        PaymentProcessId id,
-        CustomerId customerId) : base(
+        Guid id,
+        Guid customerId) : base(
             id, 
             PaymentType.Debiting,
             customerId)
