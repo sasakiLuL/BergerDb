@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="BergerDb.UI.Pages.MainNavigation.MainNavigationShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BergerDb.UI.Pages.Customers"
+    Title="BergerDb"
+    Shell.FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeader>
+
+        <StackLayout>
+            <Label
+                Padding="10"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="BergerDb" />
+
+        </StackLayout>
+
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Kunden">
+        <ShellContent ContentTemplate="{DataTemplate local:CustomerPage}" />
+    </FlyoutItem>
+</Shell>
