@@ -19,12 +19,6 @@ public class PdfTemplesConfiguration : IEntityTypeConfiguration<PdfTemplate>
             .IsUnique();
 
         builder
-            .Property(pdfTemp => pdfTemp.Id)
-            .HasConversion(
-                pdfTempId => pdfTempId.Value,
-                value => new PdfTemplateId(value));
-
-        builder
             .Property(pdfTemp => pdfTemp.Color)
             .IsRequired();
     }

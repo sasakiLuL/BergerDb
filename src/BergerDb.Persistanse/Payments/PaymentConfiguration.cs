@@ -20,12 +20,6 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
             .IsUnique();
 
         builder
-            .Property(payment => payment.Id)
-            .HasConversion(
-                paymentId => paymentId.Value,
-                value => new PaymentId(value));
-
-        builder
             .Property(payment => payment.Value)
             .IsRequired();
 

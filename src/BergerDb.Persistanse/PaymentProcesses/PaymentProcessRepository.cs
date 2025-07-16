@@ -2,7 +2,7 @@
 
 namespace BergerDb.Persistanse.PaymentProcesses;
 
-public class PaymentProcessRepository : Repository<PaymentProcess, PaymentProcessId>, IPaymentProcessRepository
+public class PaymentProcessRepository : Repository<PaymentProcess>, IPaymentProcessRepository
 {
     public PaymentProcessRepository(BergerDbContext context) : base(context)
     {

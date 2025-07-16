@@ -20,16 +20,8 @@ public class EmailConfiguration : IEntityTypeConfiguration<Email>
             .IsUnique();
 
         builder
-            .Property(cust => cust.Id)
-            .HasConversion(
-                custId => custId.Value,
-                value => new EmailId(value));
-
-        builder
             .Property(cust => cust.PaymentProcessId)
-            .HasConversion(
-                custId => custId.Value,
-                value => new PaymentProcessId(value));
+            .IsRequired();
 
         builder
             .Property(email => email.EmailType)

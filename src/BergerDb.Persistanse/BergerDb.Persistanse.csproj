@@ -21,4 +21,8 @@
     <ProjectReference Include="..\BergerDb.Shared\BergerDb.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

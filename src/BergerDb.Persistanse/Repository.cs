@@ -4,9 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BergerDb.Persistanse;
 
-public abstract class Repository<TEntity, TEntityId> : IRepository<TEntity, TEntityId>
-    where TEntity : Entity<TEntityId>
-    where TEntityId : EntityId
+public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 {
     protected readonly BergerDbContext _context;
 
@@ -30,8 +28,8 @@ public abstract class Repository<TEntity, TEntityId> : IRepository<TEntity, TEnt
         return await _context.Set<TEntity>().ToListAsync(token);
     }
 
-    public async Task<TEntity?> GetByIdAsync(TEntityId id, CancellationToken token = default)
+    public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken token = default)
     {
-        return await _context.Set<TEntity>().FirstOrDefaultAsync(token);
+        return await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id, token);
     }
 }

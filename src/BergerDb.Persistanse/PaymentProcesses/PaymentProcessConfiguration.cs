@@ -21,12 +21,6 @@ public class PaymentProcessConfiguration : IEntityTypeConfiguration<PaymentProce
             .IsUnique();
 
         builder
-            .Property(paymentProcess => paymentProcess.Id)
-            .HasConversion(
-                paymentProcessId => paymentProcessId.Value,
-                value => new PaymentProcessId(value));
-
-        builder
             .HasDiscriminator(paymentProcess => paymentProcess.PaymentType)
             .HasValue<Billing>(PaymentType.Billing)
             .HasValue<Debiting>(PaymentType.Debiting);
@@ -36,16 +30,10 @@ public class PaymentProcessConfiguration : IEntityTypeConfiguration<PaymentProce
             .IsRequired();
 
         builder
-            .Property(paymentProcess => paymentProcess.PaymentId)
-            .HasConversion(
-                paymentProcessId => paymentProcessId!.Value,
-                value => new PaymentId(value));
+            .Property(paymentProcess => paymentProcess.PaymentId);
 
         builder
-            .Property(paymentProcess => paymentProcess.CustomerId)
-            .HasConversion(
-                paymentProcessId => paymentProcessId.Value,
-                value => new CustomerId(value));
+            .Property(paymentProcess => paymentProcess.CustomerId);
 
         builder
             .HasMany(paymentProcess => paymentProcess.Emails)

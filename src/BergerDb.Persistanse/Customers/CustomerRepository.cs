@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BergerDb.Persistanse.Customers;
 
-public class CustomerRepository : Repository<Customer, CustomerId>, ICustomerRepository
+public class CustomerRepository : Repository<Customer>, ICustomerRepository
 {
     public CustomerRepository(BergerDbContext context) : base(context)
     {

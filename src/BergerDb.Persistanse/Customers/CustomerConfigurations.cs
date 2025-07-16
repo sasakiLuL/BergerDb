@@ -1,10 +1,10 @@
 ﻿using BergerDb.Domain.Customers;
+using BergerDb.Domain.Customers.Addresses;
+using BergerDb.Domain.Customers.Names;
 using BergerDb.Domain.Customers.Notations;
 using BergerDb.Domain.Customers.Prefixes;
 using BergerDb.Domain.Customers.ZipCodes;
-using BergerDb.Domain.ValueObjects.Addresses;
-using BergerDb.Domain.ValueObjects.EmailAddresses;
-using BergerDb.Domain.ValueObjects.Names;
+using BergerDb.Domain.Emails.EmailAddresses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,13 +22,7 @@ public class CustomerConfigurations : IEntityTypeConfiguration<Customer>
 
         builder
             .HasIndex(cust => cust.Id)
-            .IsUnique();
-
-        builder
-            .Property(cust => cust.Id)
-            .HasConversion(
-                custId => custId.Value, 
-                value => new CustomerId(value));
+            .IsUnique();            
 
         builder
             .Property(e => e.PersonalId)
