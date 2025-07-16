@@ -1,7 +1,7 @@
 ﻿using BergerDb.Shared.Results;
 using FluentValidation;
 
-namespace BergerDb.Domain.ValueObjects.Names;
+namespace BergerDb.Domain.Customers.Names;
 
 public class NameValidator : AbstractValidator<Name>
 {

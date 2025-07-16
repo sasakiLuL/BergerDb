@@ -1,6 +1,6 @@
 ﻿using BergerDb.Shared.Errors;
 
-namespace BergerDb.Domain.ValueObjects.Names;
+namespace BergerDb.Domain.Customers.Names;
 
 public static class NameErrors
 {

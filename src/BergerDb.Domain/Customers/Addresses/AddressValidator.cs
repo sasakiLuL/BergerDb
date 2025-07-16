@@ -1,7 +1,7 @@
 ﻿using BergerDb.Shared.Results;
 using FluentValidation;
 
-namespace BergerDb.Domain.ValueObjects.Addresses;
+namespace BergerDb.Domain.Customers.Addresses;
 
 public class AddressValidator : AbstractValidator<Address>
 {

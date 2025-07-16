@@ -1,6 +1,6 @@
 ﻿using BergerDb.Shared.Errors;
 
-namespace BergerDb.Domain.ValueObjects.EmailAddresses;
+namespace BergerDb.Domain.Emails.EmailAddresses;
 
 public static class EmailAddressErrors
 {

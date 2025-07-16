@@ -1,7 +1,7 @@
 ﻿using BergerDb.Shared.Results;
 using FluentValidation;
 
-namespace BergerDb.Domain.ValueObjects.EmailAddresses;
+namespace BergerDb.Domain.Emails.EmailAddresses;
 
 public class EmailAddressValidator : AbstractValidator<EmailAddress>
 {

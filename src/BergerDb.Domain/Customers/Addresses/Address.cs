@@ -1,8 +1,9 @@
-﻿using BergerDb.Shared.Entities;
+﻿using BergerDb.Domain.ValueObjects.Addresses;
+using BergerDb.Shared.Entities;
 using BergerDb.Shared.Results;
 using System.Text.RegularExpressions;
 
-namespace BergerDb.Domain.ValueObjects.Addresses;
+namespace BergerDb.Domain.Customers.Addresses;
 
 public record Address : ValueObject
 {

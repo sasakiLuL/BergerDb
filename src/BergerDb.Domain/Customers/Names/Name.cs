@@ -2,7 +2,7 @@
 using BergerDb.Shared.Results;
 using System.Text.RegularExpressions;
 
-namespace BergerDb.Domain.ValueObjects.Names;
+namespace BergerDb.Domain.Customers.Names;
 
 public record Name : ValueObject
 {

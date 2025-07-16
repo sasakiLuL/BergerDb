@@ -1,6 +1,6 @@
 ﻿using BergerDb.Shared.Errors;
 
-namespace BergerDb.Domain.ValueObjects.Addresses;
+namespace BergerDb.Domain.Customers.Addresses;
 
 public static class AddressErrors
 {
