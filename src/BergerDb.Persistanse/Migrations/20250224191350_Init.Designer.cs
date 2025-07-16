@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BergerDb.Persistanse.Migrations
 {
     [DbContext(typeof(BergerDbContext))]
-    [Migration("20241231032753_Fixed_Version")]
-    partial class Fixed_Version
+    [Migration("20250224191350_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,7 @@ namespace BergerDb.Persistanse.Migrations
             modelBuilder.Entity("BergerDb.Domain.Customers.Customer", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("EntryType")
@@ -151,6 +152,7 @@ namespace BergerDb.Persistanse.Migrations
             modelBuilder.Entity("BergerDb.Domain.Emails.Email", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("BodyText")
@@ -210,6 +212,7 @@ namespace BergerDb.Persistanse.Migrations
             modelBuilder.Entity("BergerDb.Domain.PaymentProcesses.PaymentProcess", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CustomerId")
@@ -241,6 +244,7 @@ namespace BergerDb.Persistanse.Migrations
             modelBuilder.Entity("BergerDb.Domain.Payments.Payment", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("PaidOnUtc")
@@ -266,6 +270,7 @@ namespace BergerDb.Persistanse.Migrations
             modelBuilder.Entity("BergerDb.Domain.PdfTemplates.PdfTemplate", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Color")
