@@ -8,7 +8,7 @@ namespace Domain::Customer
     using Core::Error;
     using Core::Result;
 
-    class Prefix
+    class ZipCode
     {
     public:
         struct Errors
@@ -20,10 +20,10 @@ namespace Domain::Customer
         const static int maximumLength = 5;
         static const QRegularExpression formatPattern;
 
-        static Result<Prefix> create(const QString &value);
+        static Result<ZipCode> create(const QString &value);
         QString value() const;
 
-        Prefix(const QString &value) : _value(value) {}
+        ZipCode(const QString &value) : _value(value) {}
 
     private:
         QString _value;
