@@ -11,11 +11,14 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
     Core
     Sql)
 
+find_package(Qt6 REQUIRED COMPONENTS Core)
+
 add_library(Infrastructure STATIC
     include/DbClient.hpp src/DbClient.cpp
     include/DbWorker.hpp src/DbWorker.cpp
 
     include/Features/Customer/CustomerDbContext.hpp src/CustomerDbContext.cpp
+    include/DbTablesService.hpp include/DbTablesService.cpp
 )
 
 target_include_directories(Infrastructure 
@@ -26,3 +29,4 @@ target_link_libraries(Infrastructure PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Sql
     Domain)
+target_link_libraries(Infrastructure PRIVATE Qt6::Core)
