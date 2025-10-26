@@ -7,19 +7,25 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
+    Widgets
+    Sql)
 
-add_library(Ui STATIC
-    src/MainWindow.cpp include/Views/MainWindow.h
-    include/StateController.hpp src/StateController.cpp
+add_library(Presentation STATIC
+    include/AppWindow.hpp src/AppWindow.cpp
+    include/AppStateController.hpp src/AppStateController.cpp
+
+    include/States/InitializationState.hpp src/InitializationState.cpp
+    include/States/NormalState.hpp src/NormalState.cpp
+    include/States/FatalErrorState.hpp src/FatalErrorState.cpp
 )
 
-target_include_directories(Ui
+target_include_directories(Presentation
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_link_libraries(Ui PRIVATE 
-    Qt6::Widgets
-    Domain)
-target_link_libraries(Ui PRIVATE Qt6::Core)
+target_link_libraries(Presentation PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Sql
+    Domain
+    Infrastructure)
