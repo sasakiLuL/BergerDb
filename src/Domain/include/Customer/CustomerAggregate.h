@@ -2,15 +2,15 @@
 
 #include <Customer/CustomerModel.h>
 
-namespace Domain::Customer
+namespace Domain
 {
     class CustomerAggregate
     {
     public:
         CustomerAggregate(const CustomerModel &model);
-        CustomerModel model() const { return _model; }
+        CustomerModel model() const;
 
     private:
-        CustomerModel _model;
+        CustomerModel m_model;
     };
 }
