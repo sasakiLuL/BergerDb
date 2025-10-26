@@ -11,6 +11,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
     Widgets
     Sql)
 
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+
 add_library(Presentation STATIC
     include/AppWindow.hpp src/AppWindow.cpp
     include/AppStateController.hpp src/AppStateController.cpp
@@ -18,6 +21,8 @@ add_library(Presentation STATIC
     include/States/InitializationState.hpp src/InitializationState.cpp
     include/States/NormalState.hpp src/NormalState.cpp
     include/States/FatalErrorState.hpp src/FatalErrorState.cpp
+    include/PageController.hpp src/PageController.cpp
+    include/PageModel.hpp src/PageModel.cpp
 )
 
 target_include_directories(Presentation
@@ -29,3 +34,5 @@ target_link_libraries(Presentation PRIVATE
     Qt${QT_VERSION_MAJOR}::Sql
     Domain
     Infrastructure)
+target_link_libraries(Presentation PRIVATE Qt6::Core)
+target_link_libraries(Presentation PRIVATE Qt6::Core)
