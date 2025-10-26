@@ -18,7 +18,7 @@ add_library(Infrastructure STATIC
     include/DbWorker.hpp src/DbWorker.cpp
 
     include/Customer/CustomerDbContext.hpp src/CustomerDbContext.cpp
-    include/DbTablesService.hpp include/DbTablesService.cpp
+    include/DbTablesService.hpp src/DbTablesService.cpp
 )
 
 target_include_directories(Infrastructure 
