@@ -13,8 +13,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         src/main.cpp
-        src/resources.qrc
-)
+        src/resources.qrc)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(BergerDb
@@ -66,10 +65,10 @@ endif()
 
 target_link_libraries(BergerDb PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
-    Domain)
-
-target_link_libraries(BergerDb PRIVATE
+    Domain
+    Infrastructure
     Ui)
 
 add_subdirectory(src/Ui)
 add_subdirectory(src/Domain)
+add_subdirectory(src/Infrastructure)
