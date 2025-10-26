@@ -2,14 +2,17 @@
 
 #include <QString>
 
-namespace Domain::Core
+namespace Domain
 {
-    struct Error
+    class Error
     {
-        Error(const QString &code_, const QString &message_) : message(message_), code(code_) {}
+    public:
+        Error(const QString &code, const QString &message);
+        QString code() const;
+        QString message() const;
 
-        QString message;
-        QString code;
+    private:
+        QString m_code;
+        QString m_message;
     };
-
-} // namespace Domain
+}
