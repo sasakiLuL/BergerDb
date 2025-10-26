@@ -1,16 +1,17 @@
 #pragma once
 
 #include <optional>
-#include <Customer/Address.h>
-#include <Customer/Email.h>
-#include <Customer/Name.h>
-#include <Customer/Notation.h>
-#include <Customer/Prefix.h>
-#include <Customer/ZipCode.h>
 #include <QUuid>
 #include <QDateTime>
 
-namespace Domain::Customer
+#include <ValueObjects/Address.h>
+#include <ValueObjects/Email.h>
+#include <ValueObjects/Name.h>
+#include <ValueObjects/Notation.h>
+#include <ValueObjects/Prefix.h>
+#include <ValueObjects/ZipCode.h>
+
+namespace Domain
 {
     enum class EntryType
     {
@@ -44,15 +45,15 @@ namespace Domain::Customer
     {
     public:
         CustomerModel(
-            const QUuid &id,
-            long personalId,
+            int id,
+            int personalId,
             const Prefix &prefix,
             const Name &firstName,
             const Name &lastName,
             Sex sex,
-            const Email &emailAddress,
-            const QDateTime &registeredOnUtc,
-            const std::optional<QDateTime> &terminatedOnUtc,
+            const Email &email,
+            const QDateTime &registeredOn,
+            const std::optional<QDateTime> &terminatedOn,
             const Notation &notation,
             const Address &street,
             const Address &city,
@@ -63,45 +64,45 @@ namespace Domain::Customer
             double subscriptionCost,
             const Name &institution);
 
-        QUuid id() const { return _id; }
-        long personalId() const { return _personalId; }
-        Prefix prefix() const { return _prefix; }
-        Name firstName() const { return _firstName; }
-        Name lastName() const { return _lastName; }
-        Sex sex() const { return _sex; }
-        Email email() const { return _emailAddress; }
-        QDateTime registeredOnUtc() const { return _registeredOnUtc; }
-        std::optional<QDateTime> terminatedOnUtc() const { return _terminatedOnUtc; }
-        Notation notation() const { return _notation; }
-        Address street() const { return _street; }
-        Address city() const { return _city; }
-        ZipCode zipCode() const { return _zipCode; }
-        PaymentType paymentType() const { return _paymentType; }
-        MemberType memberType() const { return _memberType; }
-        EntryType entryType() const { return _entryType; }
-        double subscriptionCost() const { return _subscriptionCost; }
-        Name institution() const { return _institution; }
+        int id() const;
+        int personalId() const;
+        Prefix prefix() const;
+        Name firstName() const;
+        Name lastName() const;
+        Sex sex() const;
+        Email email() const;
+        QDateTime registeredOn() const;
+        std::optional<QDateTime> terminatedOn() const;
+        Notation notation() const;
+        Address street() const;
+        Address city() const;
+        ZipCode zipCode() const;
+        PaymentType paymentType() const;
+        MemberType memberType() const;
+        EntryType entryType() const;
+        double subscriptionCost() const;
+        Name institution() const;
 
     private:
-        QUuid _id;
-        long _personalId;
-        Prefix _prefix;
-        Name _firstName;
-        Name _lastName;
-        Sex _sex;
-        Email _emailAddress;
-        QDateTime _registeredOnUtc;
-        std::optional<QDateTime> _terminatedOnUtc;
-        Notation _notation;
-        Address _street;
-        Address _city;
-        ZipCode _zipCode;
-        PaymentType _paymentType;
-        MemberType _memberType;
-        EntryType _entryType;
-        double _subscriptionCost;
-        Name _institution;
+        int m_id;
+        int m_personalId;
+        Prefix m_prefix;
+        Name m_firstName;
+        Name m_lastName;
+        Sex m_sex;
+        Email m_email;
+        QDateTime m_registeredOn;
+        std::optional<QDateTime> m_terminatedOn;
+        Notation m_notation;
+        Address m_street;
+        Address m_city;
+        ZipCode m_zipCode;
+        PaymentType m_paymentType;
+        MemberType m_memberType;
+        EntryType m_entryType;
+        double m_subscriptionCost;
+        Name m_institution;
 
         friend class CustomerAggregate;
     };
-} // namespace Domain::Customer
+}
