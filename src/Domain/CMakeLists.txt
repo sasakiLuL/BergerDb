@@ -10,13 +10,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
 add_library(Domain STATIC
-    src/Address.cpp
-    src/Email.cpp
-    src/Name.cpp
-    src/Notation.cpp
-    src/Prefix.cpp
-    src/ZipCode.cpp
-)
+    include/Core/Error.h src/Error.cpp
+
+    include/ValueObjects/Address.h src/Address.cpp
+    include/ValueObjects/Email.h src/Email.cpp
+    include/ValueObjects/Name.h src/Name.cpp
+    include/ValueObjects/Notation.h src/Notation.cpp
+    include/ValueObjects/Prefix.h src/Prefix.cpp
+    include/ValueObjects/ZipCode.h src/ZipCode.cpp
+
+    include/Customer/CustomerModel.h src/CustomerModel.cpp
+    include/Customer/CustomerAggregate.h src/CustomerAggregate.cpp)
 
 target_include_directories(Domain 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
