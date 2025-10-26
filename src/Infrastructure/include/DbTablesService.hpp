@@ -16,7 +16,7 @@ namespace Infrastructure
         void createIfNotExist();
 
     signals:
-        void progressUpdated(float progress);
+        void progressUpdated(int progress);
         void creationFinished();
         void creationFailed(const Domain::Error &error);
 

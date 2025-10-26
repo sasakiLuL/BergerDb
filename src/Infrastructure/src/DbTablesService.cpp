@@ -5,8 +5,8 @@
 Infrastructure::DbTablesService::DbTablesService(DbClient *client, const QString &filePath, QObject *parent) :
     QObject(parent), m_dbClient(client), m_filePath(filePath)
 {
-    connect(this, &DbTablesService::onQueryExecuted, m_dbClient, &DbClient::queryExecuted);
-    connect(this, &DbTablesService::onQueryFailed, m_dbClient, &DbClient::queryFailed);
+    connect(m_dbClient, &DbClient::queryExecuted, this, &DbTablesService::onQueryExecuted);
+    connect(m_dbClient, &DbClient::queryFailed, this, &DbTablesService::onQueryFailed);
 }
 
 void Infrastructure::DbTablesService::createIfNotExist()
@@ -20,7 +20,7 @@ void Infrastructure::DbTablesService::createIfNotExist()
 
     auto statements = script.split(';', Qt::SkipEmptyParts);
 
-    float progressStep = 100.f / statements.count();
+    int progressStep = 100 / statements.count();
 
     for (int i = 0; i < statements.count(); i++)
     {
@@ -31,7 +31,7 @@ void Infrastructure::DbTablesService::createIfNotExist()
 
         auto correlationId = DbClient::generateCorrelationId();
         m_dbClient->executeQuery(trimmed, {}, correlationId);
-        m_pendingQueries[correlationId] = progressStep * i + 1;
+        m_pendingQueries[correlationId] = progressStep * (i + 1);
     }
 }
 
@@ -46,6 +46,8 @@ void Infrastructure::DbTablesService::onQueryExecuted(const QList<QSqlRecord> &r
     }
 
     emit progressUpdated(*progressIterator);
+
+    m_pendingQueries.remove(correlationId);
 
     if (m_pendingQueries.isEmpty())
     {
