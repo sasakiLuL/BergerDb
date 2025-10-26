@@ -1,13 +1,10 @@
 #pragma once
 
 #include <QRegularExpression>
-#include <Core/Result.h>
+#include <Core/Error.h>
 
-namespace Domain::Customer
+namespace Domain
 {
-    using Domain::Core::Error;
-    using Domain::Core::Result;
-
     class Address
     {
     public:
@@ -20,12 +17,12 @@ namespace Domain::Customer
         const static int maximumLength = 255;
         static const QRegularExpression formatPattern;
 
-        static Result<Address> create(const QString &value);
+        static std::variant<Error, Address> create(const QString &value);
         QString value() const;
 
-        Address(const QString &value) : _value(value) {}
+        Address(const QString &value);
 
     private:
-        QString _value;
+        QString m_value;
     };
-} // namespace Domain::Customer
+}

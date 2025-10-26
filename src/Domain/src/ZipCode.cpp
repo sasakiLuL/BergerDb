@@ -1,27 +1,27 @@
-#include <Customer/ZipCode.h>
+#include <ValueObjects/ZipCode.h>
 
-using namespace Domain::Customer;
+const QRegularExpression Domain::ZipCode::formatPattern(R"(^\d+$)");
+const Domain::Error Domain::ZipCode::Errors::TooLong("Customer.ZipCode.TooLong", "The zip code is too long.");
+const Domain::Error Domain::ZipCode::Errors::InvalidFormat("Customer.ZipCode.InvalidFormat", "The zip code has an invalid format.");
 
-const QRegularExpression ZipCode::formatPattern(R"(^\d+$)");
-const Error ZipCode::Errors::TooLong("Customer.ZipCode.TooLong", "The zip code is too long.");
-const Error ZipCode::Errors::InvalidFormat("Customer.ZipCode.InvalidFormat", "The zip code has an invalid format.");
-
-Result<ZipCode> ZipCode::create(const QString &value)
+std::variant<Domain::Error, Domain::ZipCode> Domain::ZipCode::create(const QString &value)
 {
     if (value.length() > ZipCode::maximumLength)
     {
-        return Result<ZipCode>::failure(Errors::TooLong);
+        return Errors::TooLong;
     }
 
     if (formatPattern.match(value).hasMatch() == false)
     {
-        return Result<ZipCode>::failure(Errors::InvalidFormat);
+        return Errors::InvalidFormat;
     }
 
-    return Result<ZipCode>::success(ZipCode(value));
+    return ZipCode(value);
 }
 
-QString ZipCode::value() const
+QString Domain::ZipCode::value() const
 {
-    return _value;
+    return m_value;
 }
+
+Domain::ZipCode::ZipCode(const QString &value) : m_value(value) {}

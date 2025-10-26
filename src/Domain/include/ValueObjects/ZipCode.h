@@ -1,13 +1,11 @@
 #pragma once
 
-#include <Core/Result.h>
 #include <QRegularExpression>
 
-namespace Domain::Customer
-{
-    using Core::Error;
-    using Core::Result;
+#include <Core/Error.h>
 
+namespace Domain
+{
     class ZipCode
     {
     public:
@@ -20,12 +18,12 @@ namespace Domain::Customer
         const static int maximumLength = 5;
         static const QRegularExpression formatPattern;
 
-        static Result<ZipCode> create(const QString &value);
+        static std::variant<Error, ZipCode> create(const QString &value);
         QString value() const;
 
-        ZipCode(const QString &value) : _value(value) {}
+        ZipCode(const QString &value);
 
     private:
-        QString _value;
+        QString m_value;
     };
-} // namespace Domain::Customer
+}

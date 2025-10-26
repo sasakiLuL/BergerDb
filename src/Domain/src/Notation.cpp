@@ -1,20 +1,20 @@
-#include <Customer/Notation.h>
+#include <ValueObjects/Notation.h>
 
-using namespace Domain::Customer;
+const Domain::Error Domain::Notation::Errors::TooLong("Notation.TooLong", "The notation is too long.");
 
-const Error Notation::Errors::TooLong("Notation.TooLong", "The notation is too long.");
-
-Result<Notation> Notation::create(const QString &value)
+std::variant<Domain::Error, Domain::Notation> Domain::Notation::create(const QString &value)
 {
     if (value.length() > Notation::maximumLength)
     {
-        return Result<Notation>::failure(Errors::TooLong);
+        return Errors::TooLong;
     }
 
-    return Result<Notation>::success(Notation(value));
+    return Notation(value);
 }
 
-QString Notation::value() const
+QString Domain::Notation::value() const
 {
-    return _value;
+    return m_value;
 }
+
+Domain::Notation::Notation(const QString &value) : m_value(value) {}

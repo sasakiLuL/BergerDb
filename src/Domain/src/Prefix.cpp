@@ -1,27 +1,27 @@
-#include <Customer/Prefix.h>
+#include <ValueObjects/Prefix.h>
 
-using namespace Domain::Customer;
+const QRegularExpression Domain::Prefix::formatPattern(R"(^[\p{L}0-9, ./-]*$)");
+const Domain::Error Domain::Prefix::Errors::TooLong("Prefix.TooLong", "The prefix is too long.");
+const Domain::Error Domain::Prefix::Errors::InvalidFormat("Prefix.InvalidFormat", "The prefix has an invalid format.");
 
-const QRegularExpression Prefix::formatPattern(R"(^[\p{L}0-9, ./-]*$)");
-const Error Prefix::Errors::TooLong("Prefix.TooLong", "The prefix is too long.");
-const Error Prefix::Errors::InvalidFormat("Prefix.InvalidFormat", "The prefix has an invalid format.");
-
-Result<Prefix> Prefix::create(const QString &value)
+std::variant<Domain::Error, Domain::Prefix> Domain::Prefix::create(const QString &value)
 {
     if (value.length() > Prefix::maximumLength)
     {
-        return Result<Prefix>::failure(Errors::TooLong);
+        return Errors::TooLong;
     }
 
     if (formatPattern.match(value).hasMatch() == false)
     {
-        return Result<Prefix>::failure(Errors::InvalidFormat);
+        return Errors::InvalidFormat;
     }
 
-    return Result<Prefix>::success(Prefix(value));
+    return Prefix(value);
 }
 
-QString Prefix::value() const
+QString Domain::Prefix::value() const
 {
-    return _value;
+    return m_value;
 }
+
+Domain::Prefix::Prefix(const QString &value) : m_value(value) {}

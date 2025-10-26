@@ -1,27 +1,27 @@
-#include <Customer/Name.h>
+#include <ValueObjects/Name.h>
 
-using namespace Domain::Customer;
+const QRegularExpression Domain::Name::formatPattern(R"(^[\p{L}0-9 ,\.\/\\!@#$%&*+()_-]*$)");
+const Domain::Error Domain::Name::Errors::TooLong("Name.TooLong", "The customer name istoo long.");
+const Domain::Error Domain::Name::Errors::InvalidFormat("Name.InvalidFormat", "The customer name has an invalid format.");
 
-const QRegularExpression Name::formatPattern(R"(^[\p{L}0-9 ,\.\/\\!@#$%&*+()_-]*$)");
-const Error Name::Errors::TooLong("Name.TooLong", "The customer name istoo long.");
-const Error Name::Errors::InvalidFormat("Name.InvalidFormat", "The customer name has an invalid format.");
-
-Result<Name> Name::create(const QString &value)
+std::variant<Domain::Error, Domain::Name> Domain::Name::create(const QString &value)
 {
     if (value.length() > Name::maximumLength)
     {
-        return Result<Name>::failure(Errors::TooLong);
+        return Errors::TooLong;
     }
 
     if (formatPattern.match(value).hasMatch() == false)
     {
-        return Result<Name>::failure(Errors::InvalidFormat);
+        return Errors::InvalidFormat;
     }
 
-    return Result<Name>::success(Name(value));
+    return Name(value);
 }
 
-QString Name::value() const
+QString Domain::Name::value() const
 {
-    return _value;
+    return m_value;
 }
+
+Domain::Name::Name(const QString &value) : m_value(value) {}
