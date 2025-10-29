@@ -8,11 +8,9 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
+    Core
     Widgets
     Sql)
-
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
 
 add_library(Presentation STATIC
     include/AppWindow.hpp src/AppWindow.cpp
@@ -23,6 +21,8 @@ add_library(Presentation STATIC
     include/States/FatalErrorState.hpp src/FatalErrorState.cpp
     include/PageController.hpp src/PageController.cpp
     include/PageModel.hpp src/PageModel.cpp
+    include/Pages/Customers/CustomersPage.hpp src/CustomersPage.cpp
+    include/Pages/Customers/CustomersPageModel.hpp src/CustomersPageModel.cpp
 )
 
 target_include_directories(Presentation
@@ -30,9 +30,8 @@ target_include_directories(Presentation
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 target_link_libraries(Presentation PRIVATE
+    Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Sql
     Domain
     Infrastructure)
-target_link_libraries(Presentation PRIVATE Qt6::Core)
-target_link_libraries(Presentation PRIVATE Qt6::Core)
