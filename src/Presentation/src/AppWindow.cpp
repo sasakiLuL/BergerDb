@@ -13,7 +13,9 @@ Presentation::AppWindow::AppWindow(AppStateController* appStateController, QWidg
     centralLayout->setAlignment(Qt::AlignTop);
     setCentralWidget(central);
 
-    centralLayout->addWidget(appStateController->statesWidget());
+    auto *stateWidget = appStateController->statesWidget();
+
+    centralLayout->addWidget(stateWidget);
 }
 
 Presentation::AppWindow::~AppWindow() {}
