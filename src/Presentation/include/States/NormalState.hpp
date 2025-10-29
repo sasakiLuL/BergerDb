@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QLabel>
 
+#include <PageController.hpp>
 #include <AppStateController.hpp>
 
 namespace Presentation
@@ -11,12 +12,11 @@ namespace Presentation
     {
         Q_OBJECT
     public:
-        NormalState(AppStateController *appStateController, QWidget *parent = nullptr);
+        NormalState(AppStateController *appStateController, PageController *pageController, QWidget *parent = nullptr);
 
     private:
         AppStateController *m_appStateController;
-
-        QLabel *m_label;
+        PageController *m_pageController;
     };
 }
 

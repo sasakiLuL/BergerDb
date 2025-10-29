@@ -2,15 +2,15 @@
 
 #include <QVBoxLayout>
 
-Presentation::NormalState::NormalState(AppStateController *appStateController, QWidget *parent)
-    : QWidget{parent}, m_appStateController(appStateController)
+Presentation::NormalState::NormalState(AppStateController *appStateController, PageController *pageController, QWidget *parent)
+    : QWidget{parent}, m_appStateController(appStateController), m_pageController(pageController)
 {
     auto centralLayout = new QVBoxLayout(this);
     setLayout(centralLayout);
 
     centralLayout->setAlignment(Qt::AlignCenter);
 
-    m_label = new QLabel("Normal state", this);
+    centralLayout->addWidget(pageController->stackedWidget());
 
-    centralLayout->addWidget(m_label);
+    pageController->setCurrentPage(Page::Customers);
 }
